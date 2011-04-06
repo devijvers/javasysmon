@@ -3,6 +3,7 @@
   <path id="test.classpath">
     <pathelement path="target/classes"/>
     <pathelement path="target/test-classes"/>
+	<pathelement path="lib/native"/>
     <pathelement path="lib/java/junit-3.8.2.jar"/>
   </path>
  
@@ -23,7 +24,7 @@
   </target>
 
   <target name="compile-tests" depends="compile, init">
-    <javac destdir="target/test-classes" target="1.4" source="1.4">
+    <javac destdir="target/test-classes" target="1.4" source="1.4" debug="true">
       <classpath refid="test.classpath"/>
       <src path="src/test/java" />
     </javac>
