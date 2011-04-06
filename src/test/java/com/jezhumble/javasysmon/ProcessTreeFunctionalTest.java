@@ -8,7 +8,11 @@ public class ProcessTreeFunctionalTest extends TestCase {
         try {
             JavaSysMon monitor = new JavaSysMon();
             Assert.assertEquals(0, monitor.processTree().find(monitor.currentPid()).children().size());
-            Runtime.getRuntime().exec("ant sleep");
+            if (monitor.osName().toLowerCase().startsWith("windows")) {
+                Runtime.getRuntime().exec("ant.cmd sleep");
+            } else {
+                Runtime.getRuntime().exec("ant sleep");
+            }
             Runtime.getRuntime().exec("sleep 50");
             Assert.assertEquals(2, monitor.processTree().find(monitor.currentPid()).children().size());
             monitor.infanticide();
